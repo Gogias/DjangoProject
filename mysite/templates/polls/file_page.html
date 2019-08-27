@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1 align="center"> {{name}}</h1>
+	<h4> Файл создан {{date_c}}, последняя версия от {{date_u}}</h4>
+	<h4> Просмотреть историю <a href="{% url 'change_page' num=id %}"> изменений?</a></h4>
+	<h3> {{project}} </h3>
+    <p>Здравствуйте, {{user.get_username}}</p>
+    <h5><pre>{{text}}</pre></h5>
+    <h3>Желаете  <a href="{% url 'file_change' num=id %}">изменить текущий файл?</a></h3>
+
+
+{% endblock %}

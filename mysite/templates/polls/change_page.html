@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1 align="center"> {{name}}</h1>
+	<h4> Проект создан {{date}}</h4>
+    <p>Здравствуйте, {{user.get_username}}</p>
+    <h3>Желаете  <a href="{% url 'file_create' num=id %}">создать новый файл?</a></h3>
+    {% if change_list %}
+    <ul>
+    {% for change in change_list %}
+        <li><p><a href="{{ change.get_absolute_url }}">{{ change.change_date }}</p></a></li>
+    {% endfor %}
+    </ul>
+	{% else %}
+    	<p>Файлы отсутствуют.</p>
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1 align="center"> {{name}}</h1>
+	<h4> Проект создан {{date}}</h4>
+    <p>Здравствуйте, {{user.get_username}}</p>
+    <h4><a href="{% url 'add_user' num=id %}">Добавить пользователя в проект</a></h4>
+    <h3>Желаете  <a href="{% url 'file_create' num=id %}">создать новый файл?</a></h3>
+    {% if file_list %}
+    <ul>
+    {% for file in file_list %}
+        <li><p><a href="{{ file.get_absolute_url }}">{{ file.name }}</p></a></li>
+    {% endfor %}
+    </ul>
+	{% else %}
+    	<p>Файлы отсутствуют.</p>
+	{% endif %}
+
+{% endblock %}

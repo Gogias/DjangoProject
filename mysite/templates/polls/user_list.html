@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+
+{% if project_list %}
+<h2>Список моих проектов: </h2>
+<ul>
+{% for project in project_list %}
+    <li><p><a href="{{ project.get_absolute_url }}">{{ project.project }}</p></a></li>
+{% endfor %}
+</ul>
+{% else %}
+	<p>No polls are available.</p>
+{% endif %}
+
+
+{% endblock %}

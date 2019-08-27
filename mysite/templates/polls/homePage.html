@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1 align="center"> S T A R T</h1>
+
+{% if user.is_authenticated %}
+    <p>Здравствуйте, {{user.get_username}}</p>
+    <h3>Желаете <a href="{% url 'project_create' %}">создать новый проект</a>?</h3>
+{% else %}
+    <p>Пожалуйста, <a href="{% url 'login' %}">авторизуйтесь </a> или <a href="{% url 'register' %}">зарегестрируйтесь</a></p>
+{% endif %}
+
+{% endblock %}

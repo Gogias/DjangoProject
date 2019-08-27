@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h2 align="center"> Изменение текущего файла: </h2>
+
+{% if user.is_authenticated %}
+    <h3>Создание нового файла</h3>
+    <p>Здравствуйте, {{user.get_username}}</p>
+    <form method="POST">
+        {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Send" >
+	</form>
+    
+
+{% else %}
+    <p>Пожалуйста, <a href="{% url 'login' %}">авторизуйтесь </a> или <a href="{% url 'register' %}">зарегестрируйтесь</a></p>
+{% endif %}
+{% endblock %}

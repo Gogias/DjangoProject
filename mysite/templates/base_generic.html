@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {% block title %}<title>Дипломный проект</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body style="background: #e0ffff">
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-2">
+      {% block sidebar %} 
+      <ul class="sidebar-nav">
+          {% if user.is_authenticated %}
+            <h5>Вы вошли как {{ user.get_username }}</h5>
+          {% else %}
+            <h5>Вы не авторизованы </h5>
+          {% endif %}
+          <li><a href="{% url 'index' %}">Домой</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Выйти</a></li>
+            <li><a href="{% url 'userlist' %}">Последние проекты</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Авторизация</a></li>
+          {% endif %}
+          <li><a href="{% url 'register' %}">Зарегестрироваться</a></li>
+          
+      </ul>
+     {% endblock %}
+      </div>
+      <div class="col-sm-10 ">
+      {% block content %}{% endblock %}
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
